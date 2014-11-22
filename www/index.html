@@ -79,6 +79,7 @@
               url: host + "score",
               type: "GET",
               dataType: "json",
+              timeout: 2000
             }).error(function(data) {
               $(".current-score").html("60");
               $(".total-score").html("100");
@@ -105,7 +106,7 @@
             <div class="path-card-pool">
               <div class="path-card">
                 <img src="img/path1.png" alt="">
-                <a href="#walking-1"></a>
+                <a href=""></a>
               </div>
               <div class="path-card">
                 <img src="img/path2.png" alt="">
