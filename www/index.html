@@ -51,23 +51,16 @@
           }
           function checkin(placeID, photoID) {
             console.log("checkin" + placeID + photoID);
-            if (photoID != -1) {
-              $.ajax({
-                url: "http://localhost/checkin",
-                type: "GET",
-                dataType: "json",
-                data: {"photoID": photoID, "placeID": placeID}
-              }).success(function(data) {
-                console.log(data);
-                if (placeID === 4) {
-                  window.location.href = '#';
-                } else {
-                  window.location.href = '#walking-1-' + (placeID + 1);
-                }
-              }).error(function(){
-                alert("ajax error");
-              });
-            }
+            $.ajax({
+              url: host + "checkin",
+              type: "GET",
+              dataType: "json",
+              data: {"photoID": photoID, "placeID": placeID}
+            }).success(function(data) {
+              console.log(data);
+            }).error(function(){
+              alert("ajax error");
+            });
           }
           $(document).delegate("#walking-1", "pageinit", function() {
             pageID = this.id[this.id.length - 1];
