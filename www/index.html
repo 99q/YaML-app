@@ -105,6 +105,15 @@
               checkin(pageID, photoID);
             })
           });
+          $(document).delegate("#checkout", "pageinit", function() {
+            $.ajax({
+              url: host + "score",
+              type: "GET",
+              dataType: "json",
+            }).error(function(data) {
+              $("#score").html("sdfsa");
+            })
+          });
         </script>
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
