@@ -115,6 +115,10 @@ h1 {
 
 /* YaML CSS */
 
+.shake-page {
+  padding: 0;
+  background-color: #353535;
+}
 .path-card {
   position: relative;  
 }
