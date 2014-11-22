@@ -50,7 +50,8 @@
             window.removeEventListener('shake', this, false);
           }
           function checkin(placeID, photoID) {
-            if (photoID === -1) {
+            console.log("checkin" + placeID + photoID);
+            if (photoID != -1) {
               $.ajax({
                 url: "http://localhost/checkin",
                 type: "GET",
@@ -63,12 +64,45 @@
                 } else {
                   window.location.href = '#walking-1-' + (placeID + 1);
                 }
+              }).error(function(){
+                alert("ajax error");
               });
             }
           }
-          $( document ).delegate("#walking-1-1", "pageinit", function() {
-            $(".path-overview").click(function(){
-              checkin(1, 1);
+          $(document).delegate("#walking-1", "pageinit", function() {
+            pageID = this.id[this.id.length - 1];
+            console.log(pageID);
+            $(this).find(".path-photo").click(function(){
+              console.log(this);
+              photoID = $(this).data("id");
+              checkin(pageID, photoID);
+            })
+          });
+          $(document).delegate("#walking-2", "pageinit", function() {
+            pageID = this.id[this.id.length - 1];
+            console.log(pageID);
+            $(this).find(".path-photo").click(function(){
+              console.log(this);
+              photoID = $(this).data("id");
+              checkin(pageID, photoID);
+            })
+          });
+          $(document).delegate("#walking-3", "pageinit", function() {
+            pageID = this.id[this.id.length - 1];
+            console.log(pageID);
+            $(this).find(".path-photo").click(function(){
+              console.log(this);
+              photoID = $(this).data("id");
+              checkin(pageID, photoID);
+            })
+          });
+          $(document).delegate("#walking-4", "pageinit", function() {
+            pageID = this.id[this.id.length - 1];
+            console.log(pageID);
+            $(this).find(".path-photo").click(function(){
+              console.log(this);
+              photoID = $(this).data("id");
+              checkin(pageID, photoID);
             })
           });
         </script>
@@ -120,10 +154,10 @@
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-1-1.png"/><a href="#walking-2"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-1-2.png"/><a href="#walking-2"></a></div><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-1-3.png"/><a href="#walking-2"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-upgrade.png"/><a href="#walking-2"></a></div>
+              --><div class="ui-block-a path-photo" data-id="1"><img class="" src="img/path-img-1-1.png"/><a href="#walking-2"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="2"><img class="" src="img/path-img-1-2.png"/><a href="#walking-2"></a></div><!--
+              --><div class="ui-block-a path-photo" data-id="3"><img class="" src="img/path-img-1-3.png"/><a href="#walking-2"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="4"><img class="" src="img/path-img-upgrade.png"/><a href="#walking-2"></a></div>
             </div><!-- /grid-a -->
             <script>
               $($("#walking-1 .map-hint")[0]).click(function() {
@@ -149,10 +183,10 @@
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-2-1.png"/><a href="#walking-3"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-2-2.png"/><a href="#walking-3"></a></div><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-2-3.png"/><a href="#walking-3"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-upgrade.png"/><a href="#walking-3"></a></div>
+              --><div class="ui-block-a path-photo" data-id="1"><img class="" src="img/path-img-2-1.png"/><a href="#walking-3"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="1"><img class="" src="img/path-img-2-2.png"/><a href="#walking-3"></a></div><!--
+              --><div class="ui-block-a path-photo" data-id="1"><img class="" src="img/path-img-2-3.png"/><a href="#walking-3"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="1"><img class="" src="img/path-img-upgrade.png"/><a href="#walking-3"></a></div>
             </div><!-- /grid-a -->
             <script>
               $($("#walking-2 .map-hint")[0]).click(function() {
@@ -178,10 +212,10 @@
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-3-1.png"/><a href="#walking-4"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-3-2.png"/><a href="#walking-4"></a></div><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-3-3.png"/><a href="#walking-4"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-upgrade.png"/><a href="#walking-4"></a></div>
+              --><div class="ui-block-a path-photo" data-id="1"><img class="" src="img/path-img-3-1.png"/><a href="#walking-4"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="2"><img class="" src="img/path-img-3-2.png"/><a href="#walking-4"></a></div><!--
+              --><div class="ui-block-a path-photo" data-id="3"><img class="" src="img/path-img-3-3.png"/><a href="#walking-4"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="4"><img class="" src="img/path-img-upgrade.png"/><a href="#walking-4"></a></div>
             </div><!-- /grid-a -->
             <script>
               $($("#walking-3 .map-hint")[0]).click(function() {
@@ -207,10 +241,10 @@
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-4-1.png"/><a href="#checkout"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-4-2.png"/><a href="#checkout"></a></div><!--
-              --><div class="ui-block-a path-photo"><img class="" src="img/path-img-4-3.png"/><a href="#checkout"></a></div><!--
-              --><div class="ui-block-b path-photo"><img class="" src="img/path-img-upgrade.png"/><a href="#checkout"></a></div>
+              --><div class="ui-block-a path-photo" data-id="1"><img class="" src="img/path-img-4-1.png"/><a href="#checkout"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="2"><img class="" src="img/path-img-4-2.png"/><a href="#checkout"></a></div><!--
+              --><div class="ui-block-a path-photo" data-id="3"><img class="" src="img/path-img-4-3.png"/><a href="#checkout"></a></div><!--
+              --><div class="ui-block-b path-photo" data-id="4"><img class="" src="img/path-img-upgrade.png"/><a href="#checkout"></a></div>
             </div><!-- /grid-a -->
             <script>
               $($("#walking-4 .map-hint")[0]).click(function() {
