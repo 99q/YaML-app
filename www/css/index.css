@@ -118,6 +118,10 @@ h1 {
 .path-card {
   position: relative;  
 }
+.path-card img {
+  width: 100%;
+  height: 100%;
+}
 .path-card a {
   display: block;
   width: 290px;
