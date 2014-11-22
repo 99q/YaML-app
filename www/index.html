@@ -84,6 +84,7 @@
             }).error(function(data) {
               $(".current-score").html("60");
               $(".total-score").html("100");
+              $("#checkout").css("display", "block");
             })
           });
         </script>
@@ -237,7 +238,7 @@
           </div><!-- /content -->
         </div><!-- /page -->
             
-        <div id="checkout" data-role="page" class="">
+        <div id="checkout" data-role="page" class="" style="display:none">
           <div data-role="content" class="" >
            <div style="background-color:#F4F4F4">
             <span style="font-weight:bold;color:#FF4040">恭喜你结束了一次YAML!</span>
