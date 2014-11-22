@@ -35,12 +35,55 @@
           //$( document ).on( "pageshow", function(){
           //  $( "p.message" ).hide().delay( 1500 ).show( "fast" );
           //  });
+          var host = "http://localhost/"
+          var id = 1;
           window.addEventListener('shake', shakeEventDidOccur, false);
-          //function to call when shake occurs
-          function shakeEventDidOccur () {
+          function shakeEventDidOccur() {
             window.location.href = '#choose-path';
-            window.removeEventListener('shake', shakeEventDidOccur, false);
+            $.ajax({
+              url: host + "new",
+              type: "GET",
+              dataType: "json",
+            }).success(function(data) {
+              id = data;
+            })
+            window.removeEventListener('shake', this, false);
           }
+          function checkin(placeID, photoID) {
+            if (photoID === -1) {
+              $.ajax({
+                url: "http://localhost/checkin",
+                type: "GET",
+                dataType: "json",
+                data: {"photoID": photoID, "placeID": placeID}
+              }).success(function(data) {
+                console.log(data);
+                if (placeID === 4) {
+                  window.location.href = '#';
+                } else {
+                  window.location.href = '#walking-1-' + (placeID + 1);
+                }
+              });
+            }
+          }
+          $( document ).delegate("#walking-1-1", "pageinit", function() {
+            $(".path-overview").click(function(){
+              checkin(1, 1);
+            })
+          });
+          $( document ).delegate("#walking-1-1", "pageinit", function() {
+            $(".path-overview").click(function(){
+              checkin(1, 1);
+            })
+            $.ajax({
+              url: host + "getscore",
+              type: "GET",
+              dataType: "json",
+              data: {"id": id}
+            }).success(function(data) {
+              console.log(data);
+            });
+          });
         </script>
 
         <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -61,7 +104,7 @@
             <div class="path-card-pool">
               <div class="path-card">
                 <img src="img/path1.png" alt="">
-                <a href=""></a>
+                <a href="#walking-1-1"></a>
               </div>
               <div class="path-card">
                 <img src="img/path2.png" alt="">
@@ -87,6 +130,7 @@
               <img src="img/path-map-1.png" alt="">
               <div class="map-hint"></div>
             </div>
+            <a class="checkin_photo" href="#walking-1-2"></a>
           </div><!-- /content -->
         </div><!-- /page -->
 
@@ -129,18 +173,6 @@
             </div>
           </div><!-- /content -->
         </div><!-- /page -->
-
-        <div id="finish" data-role="page" class="">
-          <div data-role="content" class="">
-            <div class="scoretext">
-            Your score is
-            </div>
-            <div class="score">
-            </div>
-            <div class="share">
-            </div>
-          </div>
-        </div>
             
         <!--<script type="text/javascript" src="cordova.js"></script>-->
         <script type="text/javascript" src="js/index.js"></script>
