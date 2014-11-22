@@ -62,34 +62,7 @@
               alert("ajax error");
             });
           }
-          $(document).delegate("#walking-1", "pageinit", function() {
-            pageID = this.id[this.id.length - 1];
-            console.log(pageID);
-            $(this).find(".path-photo").click(function(){
-              console.log(this);
-              photoID = $(this).data("id");
-              checkin(pageID, photoID);
-            })
-          });
-          $(document).delegate("#walking-2", "pageinit", function() {
-            pageID = this.id[this.id.length - 1];
-            console.log(pageID);
-            $(this).find(".path-photo").click(function(){
-              console.log(this);
-              photoID = $(this).data("id");
-              checkin(pageID, photoID);
-            })
-          });
-          $(document).delegate("#walking-3", "pageinit", function() {
-            pageID = this.id[this.id.length - 1];
-            console.log(pageID);
-            $(this).find(".path-photo").click(function(){
-              console.log(this);
-              photoID = $(this).data("id");
-              checkin(pageID, photoID);
-            })
-          });
-          $(document).delegate("#walking-4", "pageinit", function() {
+          $(document).delegate("div[id^='walking-']", "pageinit", function() {
             pageID = this.id[this.id.length - 1];
             console.log(pageID);
             $(this).find(".path-photo").click(function(){
