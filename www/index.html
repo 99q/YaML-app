@@ -40,14 +40,7 @@
           window.addEventListener('shake', shakeEventDidOccur, false);
           function shakeEventDidOccur() {
             window.location.href = '#choose-path';
-            $.ajax({
-              url: host + "new",
-              type: "GET",
-              dataType: "json",
-            }).success(function(data) {
-              id = data;
-            })
-            window.removeEventListener('shake', this, false);
+            //window.removeEventListener('shake', this, false);
           }
           function checkin(placeID, photoID) {
             console.log("checkin" + placeID + photoID);
@@ -62,6 +55,18 @@
               alert("ajax error");
             });
           }
+          $(document).delegate("#choose-path", "pageinit", function() {
+            alert("choose-path");
+            $.ajax({
+              url: host + "new",
+              type: "GET",
+              dataType: "json",
+            }).success(function(data) {
+              id = data;
+            }).error(function(data) {
+              console.log(data);
+            })
+          });
           $(document).delegate("div[id^='walking-']", "pageinit", function() {
             pageID = this.id[this.id.length - 1];
             console.log(pageID);
