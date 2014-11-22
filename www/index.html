@@ -82,7 +82,8 @@
               type: "GET",
               dataType: "json",
             }).error(function(data) {
-              $("#score").html("sdfsa");
+              $(".current-score").html("60");
+              $(".total-score").html("100");
             })
           });
         </script>
@@ -243,8 +244,8 @@
             <div style="padding-left:15px; padding-right:15px">
               <div></div>
               <div id="score" style="padding-top:20px;font-weight:bold; ">  
-                  <div >你本次获得<h1 style="font-size:140px; display:inline">74</h1>分</div>
-                  <div>总分数 <span>169</span> 分</div>
+                  <div >你本次获得<h1 style="font-size:140px; display:inline" class="current-score">74</h1>分</div>
+                  <div>总分数 <span class="total-score">169</span> 分</div>
               </div>
             </div>
             </div>
