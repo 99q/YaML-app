@@ -52,11 +52,9 @@
             }).success(function(data) {
               console.log(data);
             }).error(function(){
-              alert("ajax error");
             });
           }
           $(document).delegate("#choose-path", "pageinit", function() {
-            alert("choose-path");
             $.ajax({
               url: host + "new",
               type: "GET",
