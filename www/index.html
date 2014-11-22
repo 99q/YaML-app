@@ -43,27 +43,8 @@
             //window.removeEventListener('shake', this, false);
           }
           function checkin(placeID, photoID) {
-            console.log("checkin" + placeID + photoID);
-            $.ajax({
-              url: host + "checkin",
-              type: "GET",
-              dataType: "json",
-              data: {"photoID": photoID, "placeID": placeID}
-            }).success(function(data) {
-              console.log(data);
-            }).error(function(){
-            });
           }
           $(document).delegate("#choose-path", "pageinit", function() {
-            $.ajax({
-              url: host + "new",
-              type: "GET",
-              dataType: "json",
-            }).success(function(data) {
-              id = data;
-            }).error(function(data) {
-              console.log(data);
-            })
           });
           $(document).delegate("div[id^='walking-']", "pageinit", function() {
             pageID = this.id[this.id.length - 1];
@@ -75,16 +56,9 @@
             })
           });
           $(document).delegate("#checkout", "pageinit", function() {
-            $.ajax({
-              url: host + "score",
-              type: "GET",
-              dataType: "json",
-              timeout: 2000
-            }).error(function(data) {
-              $(".current-score").html("60");
-              $(".total-score").html("100");
-              $("#checkout").css("display", "block");
-            })
+            $(".current-score").html("60");
+            $(".total-score").html("100");
+            $("#checkout").css("display", "block");
           });
         </script>
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" charset="utf-8">
