@@ -35,7 +35,7 @@
           //$( document ).on( "pageshow", function(){
           //  $( "p.message" ).hide().delay( 1500 ).show( "fast" );
           //  });
-          var host = "http://localhost/"
+          var host = "http://128.199.168.21:8026/yaml/api/"
           var id = 1;
           window.addEventListener('shake', shakeEventDidOccur, false);
           function shakeEventDidOccur() {
@@ -45,6 +45,16 @@
           function checkin(placeID, photoID) {
           }
           $(document).delegate("#choose-path", "pageinit", function() {
+            $.ajax({
+              url: host + "route",
+              type: "GET",
+              dataType: "json",
+            }).success(function(data) {
+              console.log(data);
+              id = data;
+            }).error(function(data) {
+              console.log(data);
+            })
           });
           $(document).delegate("div[id^='walking-']", "pageinit", function() {
             pageID = this.id[this.id.length - 1];
@@ -56,9 +66,24 @@
             })
           });
           $(document).delegate("#checkout", "pageinit", function() {
-            $(".current-score").html("60");
-            $(".total-score").html("100");
-            $("#checkout").css("display", "block");
+            var items = ['3vQ51UEV9AfByf6VJOPi0v', '3v7KlwkKvmqZQaoSWR0oMr']
+            var item = items[Math.floor(Math.random()*items.length)];
+            $.ajax({
+              url: host + "yaml/" + item,
+              type: "GET",
+              dataType: "json",
+            }).success(function(data) {
+              score = data['response'][0]['@score'];
+              //console.log(score);
+              $(".current-score").html(score);
+              $(".total-score").html(Math.floor(Math.random()*255 + 100));
+              $("#checkout").css("display", "block");
+            }).error(function(data) {
+              console.log(data);
+              $(".current-score").html("90");
+              $(".total-score").html("233");
+              $("#checkout").css("display", "block");
+            })
           });
         </script>
         <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" charset="utf-8">
