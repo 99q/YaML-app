@@ -65,6 +65,11 @@
               checkin(pageID, photoID);
             })
           });
+          // Fake loading
+          $(document).delegate("div[id^='walking-']", "pageshow", function() {
+            pageID = this.id[this.id.length - 1];
+            $($(this).find(".map-loading")[0]).delay(400).fadeOut(200);
+          });
           $(document).delegate("#checkout", "pageinit", function() {
             var items = ['3vQ51UEV9AfByf6VJOPi0v', '3v7KlwkKvmqZQaoSWR0oMr']
             var item = items[Math.floor(Math.random()*items.length)];
@@ -131,6 +136,7 @@
               <img src="img/path-map-1.png" alt="" class="path-map-img">
               <img src="img/path-map-1-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -160,6 +166,7 @@
               <img src="img/path-map-2.png" alt="" class="path-map-img">
               <img src="img/path-map-2-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -189,6 +196,7 @@
               <img src="img/path-map-3.png" alt="" class="path-map-img">
               <img src="img/path-map-3-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -218,6 +226,7 @@
               <img src="img/path-map-4.png" alt="" class="path-map-img">
               <img src="img/path-map-4-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
