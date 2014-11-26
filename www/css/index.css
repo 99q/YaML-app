@@ -167,17 +167,19 @@ h1 {
 .map-hint {
   display: block;
   position: absolute;
-  width: 100px;
-  height: 30px;
+  width: 110px;
+  height: 33px;
   float: right;
   top: 10px;
   right: 10px;
-  color: #ffffff;
-  background-color: rgba(100, 36, 211, 0.3);
-  line-height: 33px;
+  color: #682ABA;
+  background-color: rgba(255, 255, 255, 0.86);
+  line-height: 36px;
   text-align: center;
-  text-shadow:0px 1px 0px #666666;
-  border: 3px solid #EAEAEA;
+  text-shadow:0px 1px 0px #B8B8B8;
+  -moz-box-shadow: 0px 2px 5px #000000;
+  -webkit-box-shadow: 0px 2px 5px #000000;
+  box-shadow: 0px 2px 5px #000000;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
