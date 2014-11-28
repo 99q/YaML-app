@@ -35,7 +35,7 @@
           //$( document ).on( "pageshow", function(){
           //  $( "p.message" ).hide().delay( 1500 ).show( "fast" );
           //  });
-          var host = "http://localhost/"
+          var host = "http://128.199.168.21:8026/yaml/api/"
           var id = 1;
           window.addEventListener('shake', shakeEventDidOccur, false);
           function shakeEventDidOccur() {
@@ -43,25 +43,14 @@
             //window.removeEventListener('shake', this, false);
           }
           function checkin(placeID, photoID) {
-            console.log("checkin" + placeID + photoID);
-            $.ajax({
-              url: host + "checkin",
-              type: "GET",
-              dataType: "json",
-              data: {"photoID": photoID, "placeID": placeID}
-            }).success(function(data) {
-              console.log(data);
-            }).error(function(){
-              alert("ajax error");
-            });
           }
           $(document).delegate("#choose-path", "pageinit", function() {
-            alert("choose-path");
             $.ajax({
-              url: host + "new",
+              url: host + "route",
               type: "GET",
               dataType: "json",
             }).success(function(data) {
+              console.log(data);
               id = data;
             }).error(function(data) {
               console.log(data);
@@ -76,14 +65,29 @@
               checkin(pageID, photoID);
             })
           });
+          // Fake loading
+          $(document).delegate("div[id^='walking-']", "pageshow", function() {
+            pageID = this.id[this.id.length - 1];
+            $($(this).find(".map-loading")[0]).delay(400).fadeOut(200);
+          });
           $(document).delegate("#checkout", "pageinit", function() {
+            var items = ['3vQ51UEV9AfByf6VJOPi0v', '3v7KlwkKvmqZQaoSWR0oMr']
+            var item = items[Math.floor(Math.random()*items.length)];
             $.ajax({
-              url: host + "score",
+              url: host + "yaml/" + item,
               type: "GET",
               dataType: "json",
+            }).success(function(data) {
+              score = data['response'][0]['@score'];
+              //console.log(score);
+              $(".current-score").html(score);
+              $(".total-score").html(Math.floor(Math.random()*255 + 100));
+              $("#checkout").css("display", "block");
             }).error(function(data) {
-              $(".current-score").html("60");
-              $(".total-score").html("100");
+              console.log(data);
+              $(".current-score").html("90");
+              $(".total-score").html("233");
+              $("#checkout").css("display", "block");
             })
           });
         </script>
@@ -92,8 +96,8 @@
     </head>
     <body>
         <div id="shake" data-role="page" class="">
-          <div data-role="content" class="">
-            <a href="#choose-path">Shake it !</a>
+          <div data-role="content" class="shake-page">
+            <img src="img/shake.png" alt="">
           </div><!-- /content -->
             
         </div><!-- /page -->
@@ -106,7 +110,7 @@
             <div class="path-card-pool">
               <div class="path-card">
                 <img src="img/path1.png" alt="">
-                <a href="#walking-1"></a>
+                <a href=""></a>
               </div>
               <div class="path-card">
                 <img src="img/path2.png" alt="">
@@ -132,6 +136,7 @@
               <img src="img/path-map-1.png" alt="" class="path-map-img">
               <img src="img/path-map-1-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -161,6 +166,7 @@
               <img src="img/path-map-2.png" alt="" class="path-map-img">
               <img src="img/path-map-2-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -190,6 +196,7 @@
               <img src="img/path-map-3.png" alt="" class="path-map-img">
               <img src="img/path-map-3-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -219,6 +226,7 @@
               <img src="img/path-map-4.png" alt="" class="path-map-img">
               <img src="img/path-map-4-hint.png" alt="" class="path-map-img-hint" style="display: none;">
               <div class="map-hint"><i class="fa fa-lightbulb-o"></i> Path Hint<a href=""></a></div>
+              <div class="map-loading"><i class="fa fa-refresh fa-spin fa-stack-2x fa-inverse"></i><div class="map-loading-text">loading map</div></div>
             </div>
             <div class="checkin-intro">Please choose one phote as your CHECK-IN photo</div>
             <div class="ui-grid-a path-photo-album"><!--
@@ -237,7 +245,7 @@
           </div><!-- /content -->
         </div><!-- /page -->
             
-        <div id="checkout" data-role="page" class="">
+        <div id="checkout" data-role="page" class="" style="display:none">
           <div data-role="content" class="" >
            <div style="background-color:#F4F4F4">
             <span style="font-weight:bold;color:#FF4040">恭喜你结束了一次YAML!</span>
