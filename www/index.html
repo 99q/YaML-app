@@ -32,9 +32,9 @@
         <script src="js/jquery.mobile-1.3.2.js"></script>
         <script src="js/shake.js"></script>
         <script>
-          //$( document ).on( "pageshow", function(){
-          //  $( "p.message" ).hide().delay( 1500 ).show( "fast" );
-          //  });
+          $( document ).on( "pageshow", function(){
+           $( "p.message" ).hide().delay( 1500 ).show( "fast" );
+           });
           var host = "http://128.199.168.21:8026/yaml/api/"
           var id = 1;
           window.addEventListener('shake', shakeEventDidOccur, false);
@@ -247,9 +247,9 @@
             
         <div id="checkout" data-role="page" class="" style="display:none">
           <div data-role="content" class="" >
-           <div style="background-color:#F4F4F4">
-            <span style="font-weight:bold;color:#FF4040">恭喜你结束了一次YAML!</span>
-            <div style="padding-left:15px; padding-right:15px">
+            <div style="background-color:#F4F4F4">
+              <span style="font-weight:bold;color:#FF4040">恭喜你结束了一次YAML!</span>
+              <div style="padding-left:15px; padding-right:15px">
               <div></div>
               <div id="score" style="padding-top:20px;font-weight:bold; ">  
                   <div >你本次获得<h1 style="font-size:140px; display:inline" class="current-score"></h1>分</div>
@@ -278,11 +278,20 @@
                   </div></li>
               </ul>
             </div>
-            <div style="padding-top:40px"><a href="#choose-path" data-role="button">再次挑选路线</a></div>
+            <div style="padding-top:40px">
+              <a href="#choose-path" data-role="button" onclick=goToChoosePath()>再次挑选路线</a>
+            </div>
           </div>
         </div> <!-- /page -->
 
         <!--<script type="text/javascript" src="cordova.js"></script>-->
         <script type="text/javascript" src="js/index.js"></script>
     </body>
+
+    <script type="text/javascript">
+      function goToChoosePath () {
+        $("#checkout").css("display", "none");
+        document.location.reload();
+      }
+    </script>
 </html>
