@@ -1,6 +1,6 @@
 # YaML app
 
-压马路@CtripHackathon
+压马路 @ Ctrip Hackathon
 
 光光强 Team
 
@@ -8,7 +8,7 @@
 
 哈！最后我们获得了 “最具人气作品” 奖！
 
-##### Team Members （照片上从左至右）
+##### Team Members（照片上从左至右）
 
 * [@dalang](https://github.com/dalang)
 * [@daisylv](https://github.com/daisylv)
