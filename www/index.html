@@ -25,7 +25,9 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <title>压马路 YaML</title>
-        <link rel="stylesheet"  href="css/jquery.mobile-1.3.2.css">
+        <link rel="stylesheet" href="css/jquery.mobile-1.3.2.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
         <link rel="shortcut icon" href="img/favicon.ico">
         <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">-->
         <script src="js/jquery.js"></script>
@@ -44,6 +46,7 @@
           }
           function checkin(placeID, photoID) {
           }
+
           $(document).delegate("#choose-path", "pageinit", function() {
             $.ajax({
               url: host + "route",
@@ -71,6 +74,9 @@
             $($(this).find(".map-loading")[0]).delay(400).fadeOut(200);
           });
           $(document).delegate("#checkout", "pageinit", function() {
+            $("#reselect-route-button").click(function() {
+              document.location.reload();
+            });
             var items = ['3vQ51UEV9AfByf6VJOPi0v', '3v7KlwkKvmqZQaoSWR0oMr']
             var item = items[Math.floor(Math.random()*items.length)];
             $.ajax({
@@ -82,24 +88,18 @@
               //console.log(score);
               $(".current-score").html(score);
               $(".total-score").html(Math.floor(Math.random()*255 + 100));
-              $("#checkout").css("display", "block");
             }).error(function(data) {
-              console.log(data);
               $(".current-score").html("90");
               $(".total-score").html("233");
-              $("#checkout").css("display", "block");
             })
           });
         </script>
-        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/index.css"/>
     </head>
     <body>
         <div id="shake" data-role="page" class="">
           <div data-role="content" class="shake-page">
             <img src="img/shake.png" alt="">
           </div><!-- /content -->
-            
         </div><!-- /page -->
 
         <div id="choose-path" data-role="page" class="">
@@ -122,7 +122,6 @@
               </div>
             </div>
           </div><!-- /content -->
-            
         </div><!-- /page -->
 
         <div id="walking-1" data-role="page" class="walking">
@@ -244,18 +243,18 @@
             </script>
           </div><!-- /content -->
         </div><!-- /page -->
-            
-        <div id="checkout" data-role="page" class="" style="display:none">
+
+        <div id="checkout" data-role="page" class="">
           <div data-role="content" class="" >
             <div style="background-color:#F4F4F4">
               <span style="font-weight:bold;color:#FF4040">恭喜你结束了一次YAML!</span>
               <div style="padding-left:15px; padding-right:15px">
-              <div></div>
-              <div id="score" style="padding-top:20px;font-weight:bold; ">  
-                  <div >你本次获得<h1 style="font-size:140px; display:inline" class="current-score"></h1>分</div>
-                  <div>总分数 <span class="total-score">169</span> 分</div>
+                <div></div>
+                <div id="score" style="padding-top:20px;font-weight:bold; ">
+                    <div >你本次获得<h1 style="font-size:140px; display:inline" class="current-score"></h1>分</div>
+                    <div>总分数 <span class="total-score">169</span> 分</div>
+                </div>
               </div>
-            </div>
             </div>
             <div id="ranking">
               <div style="display:block; padding-top:30px; color:#C67171">排行榜</div>
@@ -279,7 +278,7 @@
               </ul>
             </div>
             <div style="padding-top:40px">
-              <a href="#choose-path" data-role="button" onclick=goToChoosePath()>再次挑选路线</a>
+              <a href="#choose-path" data-role="button" id="reselect-route-button">再次挑选路线</a>
             </div>
           </div>
         </div> <!-- /page -->
@@ -287,11 +286,4 @@
         <!--<script type="text/javascript" src="cordova.js"></script>-->
         <script type="text/javascript" src="js/index.js"></script>
     </body>
-
-    <script type="text/javascript">
-      function goToChoosePath () {
-        $("#checkout").css("display", "none");
-        document.location.reload();
-      }
-    </script>
 </html>
