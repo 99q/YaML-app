@@ -111,9 +111,6 @@
             $($(this).find(".map-loading")[0]).delay(400).fadeOut(200);
           });
           $(document).delegate("#checkout", "pageinit", function() {
-            $("#reselect-route-button").click(function() {
-              document.location.reload();
-            });
             var items = ['3vQ51UEV9AfByf6VJOPi0v', '3v7KlwkKvmqZQaoSWR0oMr']
             var item = items[Math.floor(Math.random()*items.length)];
             $.ajax({
