@@ -41,8 +41,8 @@
           var id = 1;
           window.addEventListener('shake', shakeEventDidOccur, false);
           function shakeEventDidOccur() {
-            document.location.reload();
-            window.location.href = '#choose-path';
+            window.location.hash = "#choose-path"
+            window.location.reload();
             //window.removeEventListener('shake', this, false);
           }
           function checkin(placeID, photoID) {
