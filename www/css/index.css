@@ -157,12 +157,13 @@ h1 {
 .path-map {
   display: block;
   position: relative;  
-  height: 320px;
-  background-color: #3B5218;
+  width: 100%;
+  height: auto;
+  margin-bottom: -4px;
 }
 .path-map img {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 .map-hint {
   display: block;
@@ -174,7 +175,8 @@ h1 {
   right: 10px;
   color: #682ABA;
   background-color: rgba(255, 255, 255, 0.86);
-  line-height: 36px;
+  font-size: 17px;
+  line-height: 34px;
   text-align: center;
   text-shadow:0px 1px 0px #B8B8B8;
   -moz-box-shadow: 0px 2px 5px #000000;
@@ -218,12 +220,15 @@ h1 {
   color: #ffffff;
   background-color: #000000;
   text-shadow: none;
+  margin-bottom: -1px;
 }
 .path-photo-album .path-photo {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 50%;
+  height: auto;
   border: 3px solid #000000;
+  margin-bottom: -5px;
+  background-color: #000000;
 }
 .path-photo a {
   display: block;
